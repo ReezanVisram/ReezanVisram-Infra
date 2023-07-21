@@ -1,6 +1,6 @@
 resource "google_cloud_run_v2_service" "default" {
   name     = var.cloudrun_instance_name
-  location = "us-central1"
+  location = var.cloudrun_instance_region
 
   template {
     scaling {
@@ -16,7 +16,7 @@ resource "google_cloud_run_v2_service" "default" {
     }
 
     containers {
-      image = "us-central1-docker.pkg.dev/reezan-visram-projects/cloud-run-source-deploy/improvemint"
+      image = var.container_base_image
 
       ports {
         name           = var.http_protocol
@@ -34,4 +34,11 @@ resource "google_cloud_run_v2_service" "default" {
       }
     }
   }
+}
+
+resource "google_artifact_registry_repository" "cloudrun_source_deploy_repository" {
+  location      = var.cloudrun_instance_region
+  repository_id = "cloud-run-source-deploy"
+  format        = "DOCKER"
+  description   = "Cloud Run Source Deployments"
 }

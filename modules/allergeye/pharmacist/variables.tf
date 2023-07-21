@@ -1,11 +1,10 @@
 variable "cloudrun_instance_name" {
-  default = "improvemint"
+  default = "pharmacist-service"
 }
 
 variable "cloudrun_instance_region" {
   default = "us-central1"
 }
-
 
 variable "cloudrun_min_instance_count" {
   default = 0
@@ -20,13 +19,21 @@ variable "cloudsql_instance" {
 }
 
 variable "container_base_image" {
-  default = "us-central1-docker.pkg.dev/reezan-visram-projects/cloud-run-source-deploy/improvemint"
+  default = "us-central1-docker.pkg.dev/reezan-visram-projects/pharmacist-service/pharmacist-service"
 }
 
 variable "http_protocol" {
-  default = "http1"
+  default = "h2c"
 }
 
 variable "container_port" {
   default = 8080
+}
+
+variable "db_user" {
+  default = "root"
+}
+
+variable "db_name" {
+  default = "allergeye"
 }
