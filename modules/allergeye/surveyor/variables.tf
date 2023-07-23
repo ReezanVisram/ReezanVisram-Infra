@@ -19,7 +19,7 @@ variable "container_base_image" {
 }
 
 variable "http_protocol" {
-  default = "http1"
+  default = "h2c"
 }
 
 variable "container_port" {
