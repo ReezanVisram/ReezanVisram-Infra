@@ -20,9 +20,44 @@ resource "google_cloud_run_v2_service" "default" {
         name  = "ENV"
         value = "prod"
       }
+
+      env {
+        name  = "DB_CONN_METHOD"
+        value = "mongodb+srv"
+      }
+
+      env {
+        name  = "DB_USER"
+        value = "reezanvisram"
+      }
+
+      env {
+        name = "DB_PASSWORD"
+        value_source {
+          secret_key_ref {
+            secret  = data.google_secret_manager_secret.db_password.secret_id
+            version = "1"
+          }
+        }
+      }
+
+      env {
+        name  = "DB_HOST"
+        value = "reezanvisramprojects.bjda0jc.mongodb.net"
+      }
+
+      env {
+        name  = "DB_CONN_OPTIONS"
+        value = "retryWrites=true&w=majority"
+      }
     }
   }
 }
+
+data "google_secret_manager_secret" "db_password" {
+  secret_id = "MONGO_PASSWORD"
+}
+
 
 data "google_iam_policy" "admin" {
   binding {
