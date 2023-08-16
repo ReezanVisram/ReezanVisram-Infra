@@ -50,6 +50,15 @@ resource "google_cloud_run_v2_service" "default" {
         name  = "DB_CONN_OPTIONS"
         value = "retryWrites=true&w=majority"
       }
+      env {
+        name = "JWT_SECRET"
+        value_source {
+          secret_key_ref {
+            secret  = data.google_secret_manager_secret.jwt_secret_key.secret_id
+            version = "1"
+          }
+        }
+      }
     }
   }
 }
@@ -58,6 +67,9 @@ data "google_secret_manager_secret" "db_password" {
   secret_id = "MONGO_PASSWORD"
 }
 
+data "google_secret_manager_secret" "jwt_secret_key" {
+  secret_id = "JWT_SECRET_KEY"
+}
 
 data "google_iam_policy" "admin" {
   binding {
