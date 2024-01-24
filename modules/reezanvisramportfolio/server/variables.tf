@@ -1,5 +1,5 @@
 variable "cloudrun_instance_name" {
-  default = "reezanvisramportfolioserver"
+  default = "reezanvisramportfolio-server"
 }
 
 variable "cloudrun_instance_region" {
