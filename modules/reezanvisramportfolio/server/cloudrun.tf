@@ -65,6 +65,16 @@ resource "google_cloud_run_v2_service" "default" {
         name  = "MONGODB_CONNECTION_OPTIONS"
         value = "?retryWrites=true&w=majority"
       }
+
+      env {
+        name  = "CLOUDSTORAGE_BUCKET_NAME"
+        value = "reezanvisramportfolio-static-files"
+      }
+
+      env {
+        name  = "CLOUDSTORAGE_FILENAME_TO_FETCH"
+        value = "resume.pdf"
+      }
     }
   }
 }
