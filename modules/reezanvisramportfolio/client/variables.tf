@@ -1,5 +1,5 @@
 variable "cloudrun_instance_name" {
-  default = "reezanvisramportfolio-server"
+  default = "reezanvisramportfolio-client"
 }
 
 variable "cloudrun_instance_region" {
@@ -15,7 +15,7 @@ variable "cloudrun_max_instance_count" {
 }
 
 variable "container_base_image" {
-  default = "us-central1-docker.pkg.dev/reezan-visram-projects/reezanvisramportfolio/reezanvisramportfolio-server:latest"
+  default = "us-central1-docker.pkg.dev/reezan-visram-projects/reezanvisramportfolio/reezanvisramportfolio-client:latest"
 }
 
 variable "http_protocol" {
