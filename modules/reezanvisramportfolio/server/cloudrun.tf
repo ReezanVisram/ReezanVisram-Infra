@@ -75,6 +75,16 @@ resource "google_cloud_run_v2_service" "default" {
         name  = "CLOUDSTORAGE_FILENAME_TO_FETCH"
         value = "resume.pdf"
       }
+
+      env {
+        name = "RECAPTCHA_SECRET"
+        value_source {
+          secret_key_ref {
+            secret  = data.google_secret_manager_secret.recaptcha_secret.secret_id
+            version = "1"
+          }
+        }
+      }
     }
   }
 }
@@ -86,6 +96,10 @@ data "google_secret_manager_secret" "mongodb_password" {
 
 data "google_secret_manager_secret" "webhook_secret" {
   secret_id = "REEZAN_VISRAM_PORTFOLIO_WEBHOOK_SECRET"
+}
+
+data "google_secret_manager_secret" "recaptcha_secret" {
+  secret_id = "REEZAN_VISRAM_PORTFOLIO_RECAPTCHA_SECRET"
 }
 
 data "google_iam_policy" "admin" {
