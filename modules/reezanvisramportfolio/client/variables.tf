@@ -7,7 +7,7 @@ variable "cloudrun_instance_region" {
 }
 
 variable "cloudrun_min_instance_count" {
-  default = 0
+  default = 1
 }
 
 variable "cloudrun_max_instance_count" {

@@ -63,7 +63,7 @@ resource "google_cloud_run_v2_service" "default" {
 
       env {
         name  = "MONGODB_CONNECTION_OPTIONS"
-        value = "?retryWrites=true&w=majority"
+        value = "?retryWrites=true&w=majority&appName=ReezanVisramProjects"
       }
 
       env {
